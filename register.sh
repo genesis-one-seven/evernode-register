@@ -12,6 +12,9 @@ read ordinal
 echo -n "Please enter the domain number: "
 read domain
 
+echo -n "Do you need to perform an account transfer before? [Y/n] "
+read transfer
+
 
 wget  https://raw.githubusercontent.com/EvernodeXRPL/evernode-24-resources/main/sashimono/installer/evernode.sh 
 
@@ -21,6 +24,8 @@ chmod +x evernode.sh
 chmod +x transfer.exp
 chmod +x register.exp
 
-expect ./transfer.exp $account $secret_key
+if [$transfer = 'y']; then
+    expect ./transfer.exp $account $secret_key
+fi
 
 expect ./register.exp $account $secret_key $ordinal $domain

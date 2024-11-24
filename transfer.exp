@@ -3,6 +3,7 @@
 set account [lindex $argv 0]
 set secret  [lindex $argv 1]
 
+
 spawn ./evernode.sh transfer
 expect "Do you want to connect to the default xahaud server (wss://xahau.network)?"
 send -- "y\r"
