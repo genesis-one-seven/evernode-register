@@ -2,14 +2,61 @@
 
 set account [lindex $argv 0]
 set secret  [lindex $argv 1]
+set domain [lindex $argv 2]
+set country [lindex $argv 3]
 
 spawn ./evernode.sh install
 
-expect "Continue? [Y/n]"
+expect "Continue?"
 send -- "y\r"
 
-# expect "Do you want to connect to the default xahaud server (wss://xahau.network)?"
-# send -- "y\r"
+expect "Do you accept the terms of the licence agreement?"
+send -- "y\r"
+
+expect "Do you want to connect to the default xahaud server (wss://xahau.network)?"
+send -- "n\r"
+
+expect "Specify the Xahaud server URL"
+send -- "wss://wss.genesis-one-seven-1.online\r"
+
+expect "Do you want to specify fallback rippled servers?"
+send -- "y\r"
+
+
+
+expect "Specify the comma-separated list of fallback server URLs:"
+send -- "wss://wss.evernodexrp.com,wss://wss.cardinalsoutpost.com\r"
+
+expect "Specify the contact email address for your host (this will be published on the host registry and is publicly visible to anyone):"
+send -- "genesis-one-seven@proton.me\r"
+
+expect "Please specify the domain name that this host is reachable at"
+send -- "$domain.genesis-one-seven-1.online\r"
+
+expect "Do you want to setup Let's Encrypt automatic SSL (recommended)?"
+send -- "y\r"
+
+expect "Do you agree to have Let's Encrypt send SSL certificate notifications to your email 'genesis-one-seven@proton.me' (required)?"
+send -- "y\r"
+
+expect "Do you agree with Let's Encrypt Terms of Service at https://letsencrypt.org/documents/LE-SA-v1.3-September-21-2022.pdf"
+send -- "y\r"
+
+expect "Please specify the two-letter country code where your server is located in (eg. AU)"
+send -- "$country\r"
+
+expect ""
+send -- "\r"
+
+expect ""
+send -- "\r"
+
+expect ""
+send -- "\r"
+
+expect ""
+send -- "\r"
+
 
 
 expect eof
