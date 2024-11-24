@@ -2,7 +2,7 @@
 
 set account [lindex $argv 0]
 set secret  [lindex $argv 1]
-set VMnumber [lindex $argv 2]
+set vmNumber [lindex $argv 2]
 set domain [lindex $argv 3]
 set country [lindex $argv 4]
 
@@ -46,6 +46,71 @@ send -- "y\r"
 expect "Please specify the two-letter country code where your server is located in (eg. AU)"
 send -- "$country\r"
 
+expect "Does your host have an IPv6 subnet assigned to it? The CIDR notation for this usually looks like \"xxxx:xxxx:xxxx:xxxx::/64\""
+send -- "n\r"
+
+expect "Is this the allocation you want to use?"
+send -- "n\r"
+
+expect "Specify the number of contract instances that you wish to host:"
+send -- "3\r"
+
+expect "Specify the total memory in megabytes to distribute among all contract instances"
+send -- "6500\r"
+
+
+expect "Specify the total Swap in megabytes to distribute among all contract instances"
+send -- "3350\r"
+
+
+expect "Specify the total disk space in megabytes to distribute among all contract instances"
+send -- "46000\r"
+
+
+expect "Are these the ports you want to use"
+send -- "n\r"
+
+peerPort = 22861 + $(((($vmNumer -1 ) * 20)))
+userPort = 26201 + $(((($vmNumer -1 ) * 20)))
+
+tcpPort = 36525 + $(((($vmNumer -1 ) * 20)))
+udpPort = 39064 + $(((($vmNumer -1 ) * 20)))
+
+
+expect "Please specify the starting port of the public 'Peer port range' your server is reachable at"
+send -- "$peerPort\r"
+
+expect "Please specify the starting port of the public 'User port range' your server is reachable at"
+send -- "$userPort\r"
+
+expect "Are these the ports you want to use"
+send -- "n\r"
+
+expect "Please specify the starting port of the public 'General purpose TCP port range' your server is reachable at"
+send -- "$tcpPort\r"
+
+expect "Please specify the starting port of the public 'General purpose UDP port range' your server is reachable at"
+send -- "$udcPort\r"
+
+
+expect "Specify the lease amount in EVRs for your contract instances (per moment charge per contract)"
+send -- "0.01\r"
+
+expect "Do you want to set an extra transaction fee to consider in case of network congestion?"
+send -- "n\r"
+
+expect "Do you want to use the default key file path /home/sashimbxrpl/.evernode-host/.host-account-secret.key to save the new account key?"
+send -- "y\r"
+
+expect "NOTE: Pressing 'n' implies that you are in the process of transferring from a previous installation in mainnet"
+send -- "n\r"
+
+expect ""
+send -- "\r"
+
+expect ""
+send -- "\r"
+
 expect ""
 send -- "\r"
 
@@ -57,6 +122,11 @@ send -- "\r"
 
 expect ""
 send -- "\r"
+
+expect ""
+send -- "\r"
+
+
 
 
 
