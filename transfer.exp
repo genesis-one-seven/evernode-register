@@ -1,0 +1,18 @@
+#!/usr/bin/expect
+
+set account [lindex $argv 0]
+set secret  [lindex $argv 1]
+
+spawn ./evernode.sh transfer
+expect "Do you want to connect to the default xahaud server (wss://xahau.network)?"
+send -- "y\r"
+expect "Specify the Xahau account address:\r"
+send -- "$account\r"
+expect "Specify the Xahau account secret:\r"
+send -- "$secret\r"
+expect "Do you want to set the current host account as the transferee's account?\r"
+send -- "y\r"
+expect "Are you sure you want to transfer Evernode registration?"
+send -- "y\r"
+
+expect eof
