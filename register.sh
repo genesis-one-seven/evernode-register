@@ -6,11 +6,14 @@ read account
 echo -n "Please enter the secrect key: "
 read secret_key
 
-echo -n "Please enter the node number: "
-read ordinal
+echo -n "Please enter the VM number: "
+read vmNumber
 
 echo -n "Please enter the domain number: "
 read domain
+
+echo -n "Please enter the country code: "
+read country
 
 echo -n "Do you need to perform an account transfer before? [Y/n] "
 read transfer
@@ -28,4 +31,4 @@ if [$transfer = 'y']; then
     expect ./transfer.exp $account $secret_key
 fi
 
-expect ./register.exp $account $secret_key $ordinal $domain
+expect ./register.exp $account $secret_key $vmNumber $domain $country

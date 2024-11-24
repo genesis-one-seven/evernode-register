@@ -2,8 +2,9 @@
 
 set account [lindex $argv 0]
 set secret  [lindex $argv 1]
-set domain [lindex $argv 2]
-set country [lindex $argv 3]
+set VMnumber [lindex $argv 2]
+set domain [lindex $argv 3]
+set country [lindex $argv 4]
 
 spawn ./evernode.sh install
 
