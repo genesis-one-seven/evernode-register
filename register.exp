@@ -4,6 +4,10 @@ set account [lindex $argv 0]
 set secret  [lindex $argv 1]
 
 spawn ./evernode.sh install
+
+expect "Continue? [Y/n]"
+send -- "y\r"
+
 # expect "Do you want to connect to the default xahaud server (wss://xahau.network)?"
 # send -- "y\r"
 
